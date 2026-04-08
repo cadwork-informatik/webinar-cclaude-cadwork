@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Timber Beam EC5</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 2em auto; }
+    form { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; }
+    label { display: flex; flex-direction: column; font-size: .85em; }
+    .pass { color: green; font-weight: bold; }
+    .fail { color: red; font-weight: bold; }
+    .result { margin-top: 1em; padding: 1em; background: #f4f4f4; }
+    #chart { width: 100%; height: 400px; }
+  </style>
+</head>
+<body>
+  <h1>EC5 Timber Beam — ULS + SLS</h1>
+  <form method="post">
+    <label>Span L [m] <input name="L" type="number" step="0.1" value="{{ result.inputs.L if result else 5.0 }}"></label>
+    <label>b [mm] <input name="b" type="number" value="{{ result.inputs.b if result else 120 }}"></label>
+    <label>h [mm] <input name="h" type="number" value="{{ result.inputs.h if result else 240 }}"></label>
+    <label>g_k [kN/m] <input name="gk" type="number" step="0.1" value="{{ result.inputs.gk if result else 2.0 }}"></label>
+    <label>q_k [kN/m] <input name="qk" type="number" step="0.1" value="{{ result.inputs.qk if result else 3.0 }}"></label>
+    <label>Class
+      <select name="cls">
+        {% for c in ["C14","C16","C18","C20","C22","C24","C27","C30"] %}
+        <option value="{{c}}" {% if result and result.inputs.cls==c %}selected{% endif %}>{{c}}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Service class
+      <select name="sc">
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+      </select>
+    </label>
+    <label>Load duration
+      <select name="ld">
+        <option value="permanent">permanent</option>
+        <option value="medium" selected>medium</option>
+        <option value="short">short</option>
+      </select>
+    </label>
+    <button type="submit" style="grid-column: span 4">Compute</button>
+  </form>
+
+  {% if result %}
+  <div class="result">
+    <h2>Results</h2>
+    <p>q_d = {{ result.qd }} kN/m | M_d = {{ result.Md }} kNm | V_d = {{ result.Vd }} kN</p>
+    <p>σ_m,d = {{ result.sigma_md }} N/mm² | f_m,d = {{ result.fmd }} N/mm²</p>
+    <p>ULS ratio = {{ result.uls_ratio }}
+      <span class="{{ 'pass' if result.uls_pass else 'fail' }}">
+        {{ 'PASS' if result.uls_pass else 'FAIL' }}
+      </span>
+    </p>
+    <p>w_inst = {{ result.w_inst }} mm (lim {{ result.w_lim_inst }}) |
+       w_fin = {{ result.w_fin }} mm (lim {{ result.w_lim_fin }})
+      <span class="{{ 'pass' if result.sls_pass else 'fail' }}">
+        {{ 'PASS' if result.sls_pass else 'FAIL' }}
+      </span>
+    </p>
+    <div id="chart"></div>
+    <script>
+      const d = {{ result.chart | safe }};
+      Plotly.newPlot('chart', [
+        {x: d.xs, y: d.M, name: 'M(x) [kNm]', type: 'scatter'},
+        {x: d.xs, y: d.V, name: 'V(x) [kN]', type: 'scatter', yaxis: 'y2'},
+        {x: d.xs, y: d.w, name: 'w(x) [mm]', type: 'scatter', yaxis: 'y3'}
+      ], {
+        xaxis: {title: 'x [m]'},
+        yaxis: {title: 'M'},
+        yaxis2: {title: 'V', overlaying: 'y', side: 'right'},
+        yaxis3: {title: 'w', overlaying: 'y', side: 'right', position: 0.95}
+      });
+    </script>
+  </div>
+  {% endif %}
+</body>
+</html>
