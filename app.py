@@ -96,7 +96,7 @@ def calc(L, b, h, gk, qk, cls, sc, ld):
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "result": None})
+    return templates.TemplateResponse(request, "index.html", {"result": None})
 
 
 @app.post("/", response_class=HTMLResponse)
@@ -112,4 +112,4 @@ def submit(
     ld: str = Form("medium"),
 ):
     r = calc(L, b, h, gk, qk, cls, sc, ld)
-    return templates.TemplateResponse("index.html", {"request": request, "result": r})
+    return templates.TemplateResponse(request, "index.html", {"result": r})

@@ -1,12 +1,49 @@
 {
   "permissions": {
     "allow": [
-      "Bash",
-      "Read",
-      "Write",
-      "Edit",
-      "Glob",
-      "Grep"
+      "Bash(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebSearch",
+      "WebFetch(domain:docs.pydantic.dev)",
+      "WebFetch(domain:fastapi.tiangolo.com)",
+      "WebFetch(domain:plotly.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "Skill(start-server)",
+      "Skill(clean-post-plan)",
+      "Skill(review-code)",
+      "Skill(run-tests)",
+      "Skill(verify-ui)",
+      "Bash(python -c ':*)",
+      "Bash(python -m venv .venv)",
+      "Bash(.venv/Scripts/python.exe -m pip install -q -e \".[dev]\")",
+      "Bash(.venv/Scripts/python.exe -m pip install -e \".[dev]\")",
+      "Bash(uv --version)",
+      "Bash(git -C C:/cadwork_repos/webinar-cclaude-cadwork branch --show-current)",
+      "Bash(rm:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)",
+      "Bash(curl -s http://localhost:8765/ -o response.html -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:8765/ -d \"span_m=5&width_mm=120&height_mm=240&g_k=2&q_k=3&timber_class=C24&service_class=1&duration=medium\" -o post.html -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq *uvicorn*\")",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 8765 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }')",
+      "Bash(curl -s http://localhost:8766/ -o r.html -w \"GET %{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:8766/ -d \"L=5&b=120&h=240&gk=2&qk=3&cls=C24&sc=1&ld=medium\" -o p.html -w \"POST %{http_code}\\\\n\")",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 8766 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }')",
+      "Bash(curl -s http://localhost:8767/ -o r.html -w \"GET %{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:8767/ -d \"L=5&b=120&h=240&gk=2&qk=3&cls=C24&sc=1&ld=medium\" -o p.html -w \"POST %{http_code}\\\\n\")",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 8767 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }')"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright",
+    "context7"
+  ]
 }

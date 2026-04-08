@@ -1,0 +1,11 @@
+[project]
+name = "sloppy-beam"
+version = "0.0.1"
+description = "Quick timber beam calc — sloppy webinar demo"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "jinja2",
+    "python-multipart",
+]
