@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>EC5 Timber Beam Designer</h1>
+<p>Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.</p>
+
+<form method="post">
+  <label>Span L [m]
+    <input name="span_m" type="number" step="0.1" min="0.1"
+           value="{{ report.beam.span_m if report else 5.0 }}" required>
+  </label>
+  <label>Width b [mm]
+    <input name="width_mm" type="number" step="1" min="1"
+           value="{{ report.beam.section.width_mm if report else 120 }}" required>
+  </label>
+  <label>Height h [mm]
+    <input name="height_mm" type="number" step="1" min="1"
+           value="{{ report.beam.section.height_mm if report else 240 }}" required>
+  </label>
+  <label>Timber class
+    <select name="timber_class">
+      {% for c in classes %}
+      <option value="{{ c }}" {% if report and report.beam.timber.name == c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>g_k [kN/m]
+    <input name="g_k" type="number" step="0.1" min="0"
+           value="{{ report.beam.loads.g_k if report else 2.0 }}" required>
+  </label>
+  <label>q_k [kN/m]
+    <input name="q_k" type="number" step="0.1" min="0"
+           value="{{ report.beam.loads.q_k if report else 3.0 }}" required>
+  </label>
+  <label>Service class
+    <select name="service_class">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </label>
+  <label>Load duration
+    <select name="duration">
+      <option value="permanent">permanent</option>
+      <option value="long">long</option>
+      <option value="medium" selected>medium</option>
+      <option value="short">short</option>
+      <option value="instantaneous">instantaneous</option>
+    </select>
+  </label>
+  <button type="submit">Compute</button>
+</form>
+
+{% if report %}
+<div class="card">
+  <h2>ULS — Bending
+    <span class="{{ 'pass' if report.uls.passes else 'fail' }}">
+      {{ 'PASS' if report.uls.passes else 'FAIL' }}
+    </span>
+  </h2>
+  <table>
+    <tr><th>q_d</th><td>{{ '%.3f'|format(report.uls.q_d_kN_per_m) }} kN/m</td></tr>
+    <tr><th>M_d</th><td>{{ '%.3f'|format(report.uls.M_d_kNm) }} kNm</td></tr>
+    <tr><th>V_d</th><td>{{ '%.3f'|format(report.uls.V_d_kN) }} kN</td></tr>
+    <tr><th>σ_m,d</th><td>{{ '%.2f'|format(report.uls.sigma_m_d) }} N/mm²</td></tr>
+    <tr><th>f_m,d</th><td>{{ '%.2f'|format(report.uls.f_m_d) }} N/mm²</td></tr>
+    <tr><th>ratio</th><td>{{ '%.3f'|format(report.uls.ratio) }}</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>SLS — Deflection
+    <span class="{{ 'pass' if report.sls.passes else 'fail' }}">
+      {{ 'PASS' if report.sls.passes else 'FAIL' }}
+    </span>
+  </h2>
+  <table>
+    <tr><th>w_inst</th><td>{{ '%.2f'|format(report.sls.w_inst_mm) }} mm (lim {{ '%.2f'|format(report.sls.w_lim_inst_mm) }} mm)</td></tr>
+    <tr><th>w_fin</th><td>{{ '%.2f'|format(report.sls.w_fin_mm) }} mm (lim {{ '%.2f'|format(report.sls.w_lim_fin_mm) }} mm)</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Diagrams</h2>
+  <div id="chart"></div>
+  <script>
+    const d = {{ chart_json | safe }};
+    Plotly.newPlot('chart', [
+      {x: d.xs, y: d.M, name: 'M(x) [kNm]', type: 'scatter'},
+      {x: d.xs, y: d.V, name: 'V(x) [kN]', type: 'scatter', yaxis: 'y2'},
+      {x: d.xs, y: d.w, name: 'w(x) [mm]', type: 'scatter', yaxis: 'y3'}
+    ], {
+      margin: {t: 20},
+      xaxis: {title: 'x [m]'},
+      yaxis: {title: 'M [kNm]'},
+      yaxis2: {title: 'V [kN]', overlaying: 'y', side: 'right'},
+      yaxis3: {title: 'w [mm]', overlaying: 'y', side: 'right', position: 0.94, showgrid: false}
+    });
+  </script>
+</div>
+{% endif %}
+{% endblock %}

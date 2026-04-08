@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}EC5 Timber Beam Designer{% endblock %}</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 960px; margin: 2em auto; color: #222; }
+    h1 { border-bottom: 2px solid #444; padding-bottom: .3em; }
+    form { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em 1em; margin-bottom: 1.5em; }
+    label { display: flex; flex-direction: column; font-size: .85em; color: #555; }
+    input, select { padding: .35em; font-size: 1em; }
+    button { grid-column: span 4; padding: .6em; font-size: 1em; background: #2a6; color: #fff; border: 0; cursor: pointer; }
+    .card { background: #f7f7f7; padding: 1em 1.2em; border-radius: 6px; margin-bottom: 1em; }
+    .pass { color: #1a7a3a; font-weight: 700; }
+    .fail { color: #b22; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .35em .6em; border-bottom: 1px solid #ddd; }
+    #chart { width: 100%; height: 420px; }
+  </style>
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>
