@@ -14,6 +14,6 @@ fi
 cd "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null || exit 0
 
 # Format, then autofix lint. Silent on success; swallow errors so the hook never blocks.
-ruff format "$FILE" 2>/dev/null
-ruff check --fix "$FILE" 2>/dev/null
+uv run ruff format "$FILE" 2>/dev/null
+uv run ruff check --fix "$FILE" 2>/dev/null
 exit 0

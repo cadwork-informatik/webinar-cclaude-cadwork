@@ -6,8 +6,8 @@ Claude Code setup (agents, hooks, skills, MCP). Demo project for the Claude Code
 ## Run
 
 ```bash
-pip install -e ".[dev]"
-uvicorn beam_calc.adapters.web.app:create_app --factory --reload --port 8000
+uv sync --extra dev
+uv run uvicorn beam_calc.adapters.web.app:create_app --factory --reload --port 8000
 ```
 
 Open http://localhost:8000.
@@ -15,12 +15,12 @@ Open http://localhost:8000.
 ## Test
 
 ```bash
-pytest                  # all categories
-pytest -m unit          # domain only
-pytest -m integration   # + adapters
-pytest -m smoke         # + web round-trip
-ruff check src tests
-mypy src
+uv run pytest                  # all categories
+uv run pytest -m unit          # domain only
+uv run pytest -m integration   # + adapters
+uv run pytest -m smoke         # + web round-trip
+uv run ruff check src tests
+uv run mypy src
 ```
 
 ## Claude Code workflow

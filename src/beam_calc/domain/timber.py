@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from enum import Enum
+from enum import Enum, StrEnum
 
 
 class ServiceClass(int, Enum):
@@ -11,7 +11,7 @@ class ServiceClass(int, Enum):
     SC3 = 3
 
 
-class LoadDuration(str, Enum):
+class LoadDuration(StrEnum):
     PERMANENT = "permanent"
     LONG = "long"
     MEDIUM = "medium"

@@ -15,7 +15,7 @@ You are the post-plan cleaner. Run AFTER a plan has finished editing code.
    ```
    Union them. If empty, report "no Python changes" and exit.
 
-2. Run `ruff format` and `ruff check --fix --unsafe-fixes` on those files.
+2. Run `uv run ruff format` and `uv run ruff check --fix --unsafe-fixes` on those files.
 
 3. Open each changed file and remove:
    - Unused imports ruff missed (rare).
@@ -23,7 +23,7 @@ You are the post-plan cleaner. Run AFTER a plan has finished editing code.
    - Commented-out code blocks (lines of `# old_code`).
    - Orphaned dataclasses / functions with zero references (grep across `src/` and `tests/`).
 
-4. Re-run `ruff check` on changed files. Report any remaining violations — DO NOT suppress them.
+4. Re-run `uv run ruff check` on changed files. Report any remaining violations — DO NOT suppress them.
 
 5. Output a short summary:
    - Files touched

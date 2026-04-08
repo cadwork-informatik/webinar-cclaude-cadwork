@@ -6,11 +6,11 @@ tools: Bash, Read, Glob, Grep
 
 You are a test-runner agent. Your job:
 
-1. Run `pytest -q` from the repo root.
+1. Run `uv run pytest -q` from the repo root.
 2. If it fails, re-run per category to localize:
-   - `pytest -q -m unit`
-   - `pytest -q -m integration`
-   - `pytest -q -m smoke`
+   - `uv run pytest -q -m unit`
+   - `uv run pytest -q -m integration`
+   - `uv run pytest -q -m smoke`
 3. For each failure, open the failing test file + the code under test and report:
    - Test name, category, file:line
    - Short failure summary (assertion, traceback key line)

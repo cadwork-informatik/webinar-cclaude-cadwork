@@ -21,7 +21,6 @@ def build_router(service: BeamDesignService) -> APIRouter:
 
     def _render(request: Request, report: DesignReport | None) -> HTMLResponse:
         context: dict[str, object] = {
-            "request": request,
             "classes": service.available_classes(),
             "report": report,
         }
@@ -34,7 +33,7 @@ def build_router(service: BeamDesignService) -> APIRouter:
                     "w": report.diagrams.w_mm,
                 }
             )
-        return templates.TemplateResponse("index.html", context)
+        return templates.TemplateResponse(request, "index.html", context)
 
     @router.get("/", response_class=HTMLResponse)
     def index(request: Request) -> HTMLResponse:

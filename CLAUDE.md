@@ -34,7 +34,7 @@ Layers live under `src/beam_calc/`:
 - No bare `except:`. Catch specific exceptions.
 - No `print()` for debugging — use `logging` in adapters; domain stays silent.
 - `from __future__ import annotations` at the top of every new module.
-- `ruff check` and `mypy --strict` must pass before any commit.
+- `uv run ruff check` and `uv run mypy` must pass before any commit.
 
 ## Testing
 
@@ -57,7 +57,16 @@ Start the server for verification with `/start-server`.
 
 ## Tooling workflow
 
-- Edit a `.py` file → the `format-py.sh` PostToolUse hook runs `ruff format` + `ruff check --fix`.
+This project uses **`uv`** for Python management. All commands are prefixed with `uv run` so the
+correct environment is used regardless of the user's shell activation state.
+
+- Install / sync: `uv sync --extra dev`
+- Run the server: `uv run uvicorn beam_calc.adapters.web.app:create_app --factory --reload`
+- Tests: `uv run pytest`
+- Lint/format: `uv run ruff check src tests` / `uv run ruff format src tests`
+- Type check: `uv run mypy src`
+
+- Edit a `.py` file → the `format-py.sh` PostToolUse hook runs `uv run ruff format` + `uv run ruff check --fix`.
 - Finish a plan with `.py` changes → the `post-plan-stop.sh` Stop hook prompts `/clean-post-plan`,
   which runs `post-plan-cleaner` and `guidelines-verifier` in parallel.
 - Before completing any substantial change: `/review-code` (code-reviewer agent) and `/run-tests`.
