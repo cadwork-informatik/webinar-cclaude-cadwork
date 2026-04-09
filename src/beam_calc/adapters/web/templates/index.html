@@ -3,7 +3,7 @@
 <h1>EC5 Timber Beam Designer</h1>
 <p>Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.</p>
 
-<form method="post">
+<form method="post" onsubmit="return confirm('The computation may take a moment. Proceed?')">
   <label>Beam name
     <input name="name" type="text" placeholder="e.g. Floor joist B3"
            value="{{ report.beam.name if report else '' }}">
