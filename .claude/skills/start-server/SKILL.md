@@ -1,13 +1,14 @@
 ---
 name: start-server
-description: Start the FastAPI beam designer on port 8000 for manual or Playwright testing.
+description: Health-check that the FastAPI beam designer is reachable on port 8000 (user-managed server).
 ---
 
-Run this in the background:
+**Do NOT start, restart, or kill the server.** The user manages it themselves.
+
+Check that `http://localhost:8000` responds:
 
 ```bash
-uv run uvicorn beam_calc.adapters.web.app:create_app --factory --reload --port 8000
+curl -sf http://localhost:8000 > /dev/null && echo "Server is up" || echo "Server is NOT running — ask the user to start it with: uv run invoke server.debug-uvicorn"
 ```
 
-Wait a second, then confirm `http://localhost:8000` responds (curl or TestClient). Keep the server
-running so `/verify-ui` can drive it.
+If the server is not running, inform the user and stop. Never spawn uvicorn or run a background process.

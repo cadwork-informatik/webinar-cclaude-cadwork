@@ -1,0 +1,182 @@
+- generic [active] [ref=e1]:
+  - heading "EC5 Timber Beam Designer" [level=1] [ref=e2]
+  - paragraph [ref=e3]: Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - text: Project name
+      - textbox "Project name" [ref=e6]:
+        - /placeholder: e.g. Residential building A
+    - generic [ref=e7]:
+      - text: Beam name
+      - textbox "Beam name" [ref=e8]:
+        - /placeholder: e.g. Floor joist B3
+        - text: Floor joist B3
+    - generic [ref=e9]:
+      - text: Span L [m]
+      - spinbutton "Span L [m]" [ref=e10]: "5.0"
+    - generic [ref=e11]:
+      - text: Width b [mm]
+      - spinbutton "Width b [mm]" [ref=e12]: "120.0"
+    - generic [ref=e13]:
+      - text: Height h [mm]
+      - spinbutton "Height h [mm]" [ref=e14]: "240.0"
+    - generic [ref=e15]:
+      - text: Species
+      - combobox "Species" [ref=e16]
+    - generic [ref=e17]:
+      - text: Timber class
+      - combobox "Timber class" [ref=e18]:
+        - option "C14"
+        - option "C16"
+        - option "C18"
+        - option "C20"
+        - option "C22"
+        - option "C24" [selected]
+        - option "C27"
+        - option "C30"
+    - generic [ref=e19]:
+      - text: g_k [kN/m]
+      - spinbutton "g_k [kN/m]" [ref=e20]: "2.0"
+    - generic [ref=e21]:
+      - text: q_k [kN/m]
+      - spinbutton "q_k [kN/m]" [ref=e22]: "3.0"
+    - generic [ref=e23]:
+      - text: Service class
+      - combobox "Service class" [ref=e24]:
+        - option "1" [selected]
+        - option "2"
+        - option "3"
+    - generic [ref=e25]:
+      - text: Load duration
+      - combobox "Load duration" [ref=e26]:
+        - option "permanent"
+        - option "long"
+        - option "medium" [selected]
+        - option "short"
+        - option "instantaneous"
+    - button "Compute" [ref=e27] [cursor=pointer]
+  - 'heading "Results: Floor joist B3" [level=2] [ref=e28]'
+  - generic [ref=e29]:
+    - heading "ULS — Bending FAIL" [level=2] [ref=e30]
+    - table [ref=e31]:
+      - rowgroup [ref=e32]:
+        - row "q_d 7.200 kN/m" [ref=e33]:
+          - rowheader "q_d" [ref=e34]
+          - cell "7.200 kN/m" [ref=e35]
+        - row "M_d 22.500 kNm" [ref=e36]:
+          - rowheader "M_d" [ref=e37]
+          - cell "22.500 kNm" [ref=e38]
+        - row "V_d 18.000 kN" [ref=e39]:
+          - rowheader "V_d" [ref=e40]
+          - cell "18.000 kN" [ref=e41]
+        - row "σ_m,d 19.53 N/mm²" [ref=e42]:
+          - rowheader "σ_m,d" [ref=e43]
+          - cell "19.53 N/mm²" [ref=e44]
+        - row "f_m,d 14.77 N/mm²" [ref=e45]:
+          - rowheader "f_m,d" [ref=e46]
+          - cell "14.77 N/mm²" [ref=e47]
+        - row "ratio 1.322" [ref=e48]:
+          - rowheader "ratio" [ref=e49]
+          - cell "1.322" [ref=e50]
+  - generic [ref=e51]:
+    - heading "SLS — Deflection FAIL" [level=2] [ref=e52]
+    - table [ref=e53]:
+      - rowgroup [ref=e54]:
+        - row "w_inst 26.76 mm (lim 16.67 mm)" [ref=e55]:
+          - rowheader "w_inst" [ref=e56]
+          - cell "26.76 mm (lim 16.67 mm)" [ref=e57]
+        - row "w_fin 42.81 mm (lim 20.00 mm)" [ref=e58]:
+          - rowheader "w_fin" [ref=e59]
+          - cell "42.81 mm (lim 20.00 mm)" [ref=e60]
+  - generic [ref=e61]:
+    - heading "Diagrams" [level=2] [ref=e62]
+    - generic [ref=e65]:
+      - img:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: "0"
+              - generic:
+                - generic: "1"
+              - generic:
+                - generic: "2"
+              - generic:
+                - generic: "3"
+              - generic:
+                - generic: "4"
+              - generic:
+                - generic: "5"
+            - generic:
+              - generic:
+                - generic: "0"
+              - generic:
+                - generic: "5"
+              - generic:
+                - generic: "10"
+              - generic:
+                - generic: "15"
+              - generic:
+                - generic: "20"
+            - generic:
+              - generic:
+                - generic:
+                  - generic: −20
+                - generic:
+                  - generic: −15
+                - generic:
+                  - generic: −10
+                - generic:
+                  - generic: −5
+                - generic:
+                  - generic: "0"
+                - generic:
+                  - generic: "5"
+                - generic:
+                  - generic: "10"
+                - generic:
+                  - generic: "15"
+                - generic:
+                  - generic: "20"
+              - generic:
+                - generic:
+                  - generic: "0"
+                - generic:
+                  - generic: "5"
+                - generic:
+                  - generic: "10"
+                - generic:
+                  - generic: "15"
+                - generic:
+                  - generic: "20"
+                - generic:
+                  - generic: "25"
+      - img:
+        - generic:
+          - generic [ref=e90]:
+            - generic [ref=e92]: M(x) [kNm]
+            - generic [ref=e95]: V(x) [kN]
+            - generic [ref=e98]: w(x) [mm]
+          - generic:
+            - generic: x [m]
+          - generic:
+            - generic: M [kNm]
+          - generic:
+            - generic: V [kN]
+          - generic:
+            - generic: w [mm]
+      - generic [ref=e100]:
+        - img [ref=e103] [cursor=pointer]
+        - generic [ref=e105]:
+          - img [ref=e107] [cursor=pointer]
+          - img [ref=e110] [cursor=pointer]
+        - generic [ref=e112]:
+          - img [ref=e114] [cursor=pointer]
+          - img [ref=e117] [cursor=pointer]
+          - img [ref=e120] [cursor=pointer]
+          - img [ref=e123] [cursor=pointer]
+        - link "plotly-logomark" [ref=e126] [cursor=pointer]:
+          - /url: https://plotly.com/
+          - img "plotly-logomark" [ref=e127]
+      - img
+  - img [ref=e140]

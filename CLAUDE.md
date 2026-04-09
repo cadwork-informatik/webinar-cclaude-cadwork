@@ -55,20 +55,22 @@ the UI — is **not complete** until `/verify-ui` has been run against a local s
 spawns the `verify-ui` agent, which drives the page via the Playwright MCP, takes a screenshot,
 and checks for browser console errors.
 
-**Do not ask the user for permission** — just run `/start-server` then `/verify-ui` automatically
-whenever a change may affect the UI. This is a required step, not an optional one.
+**Do not ask the user for permission** — just run `/verify-ui` automatically whenever a change may
+affect the UI. The server is already running on port 8000 (started by the user with `--reload`).
+**Never spawn, restart, or kill the dev server.**
 
 ## Tooling workflow
 
-This project uses **`uv`** for Python management. All commands are prefixed with `uv run` so the
-correct environment is used regardless of the user's shell activation state.
+This project uses **`uv`** for Python management and **`invoke`** as a task runner. Repo commands
+are defined in `tasks.py` and run via `uv run invoke <task>`. The dev server is started by the user
+with `uv run invoke server.debug-uvicorn` — Claude Code must never spawn or kill it.
 
 ### Slash commands (skills)
 
 | Command | What it does |
 |---|---|
 | `/sync` | `uv sync --extra dev` — install/sync all dependencies |
-| `/start-server` | Start the FastAPI server on port 8000 (background, with `--reload`) |
+| `/start-server` | Health-check that the server is reachable on port 8000 (user-managed) |
 | `/lint` | Run `ruff check` + `mypy` on `src` and `tests` |
 | `/format` | Run `ruff format` + `ruff check --fix` on `src` and `tests` |
 | `/run-tests` | Run `pytest` via the test-runner agent with per-category triage |
