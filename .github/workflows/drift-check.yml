@@ -1,0 +1,46 @@
+name: Daily Drift Check
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync --extra dev
+
+      - name: Run drift check
+        id: drift
+        run: |
+          set +e
+          uv run python scripts/drift_check.py > drift-report.md 2>&1
+          exit_code=$?
+          cat drift-report.md
+          if [ $exit_code -ne 0 ]; then
+            echo "drift_detected=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open PR if drift detected
+        if: steps.drift.outputs.drift_detected == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "chore: fix drift detected by daily audit"
+          body-path: drift-report.md
+          branch: chore/fix-drift-automated
+          commit-message: "chore: add drift report"
+          labels: drift,automated
+          delete-branch: true
