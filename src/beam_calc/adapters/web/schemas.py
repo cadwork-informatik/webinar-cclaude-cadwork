@@ -1,4 +1,5 @@
 """DTOs for the web adapter — the only place pydantic is allowed."""
+
 from __future__ import annotations
 
 from pydantic import BaseModel, Field
@@ -8,6 +9,7 @@ from beam_calc.domain.timber import LoadDuration, ServiceClass
 
 
 class DesignFormDto(BaseModel):
+    name: str = ""
     span_m: float = Field(gt=0)
     width_mm: float = Field(gt=0)
     height_mm: float = Field(gt=0)
@@ -19,6 +21,7 @@ class DesignFormDto(BaseModel):
 
     def to_request(self) -> DesignRequest:
         return DesignRequest(
+            name=self.name,
             span_m=self.span_m,
             width_mm=self.width_mm,
             height_mm=self.height_mm,

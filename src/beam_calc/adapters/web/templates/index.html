@@ -4,6 +4,10 @@
 <p>Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.</p>
 
 <form method="post">
+  <label>Beam name
+    <input name="name" type="text" placeholder="e.g. Floor joist B3"
+           value="{{ report.beam.name if report else '' }}">
+  </label>
   <label>Span L [m]
     <input name="span_m" type="number" step="0.1" min="0.1"
            value="{{ report.beam.span_m if report else 5.0 }}" required>
@@ -51,6 +55,9 @@
 </form>
 
 {% if report %}
+{% if report.beam.name %}
+<h2>Results: {{ report.beam.name }}</h2>
+{% endif %}
 <div class="card">
   <h2>ULS — Bending
     <span class="{{ 'pass' if report.uls.passes else 'fail' }}">

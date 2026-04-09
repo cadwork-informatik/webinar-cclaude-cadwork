@@ -1,4 +1,5 @@
 """Pure EC5 design checks — no I/O, no framework."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

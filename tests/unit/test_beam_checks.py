@@ -1,4 +1,5 @@
 """Unit tests — pure domain checks, no I/O."""
+
 from __future__ import annotations
 
 import pytest
@@ -14,6 +15,7 @@ C24 = TimberProperties("C24", f_m_k=24.0, E_0_mean=11000.0)
 
 def _default_beam() -> Beam:
     return Beam(
+        name="Test beam",
         span_m=5.0,
         section=RectangularSection(width_mm=120, height_mm=240),
         timber=C24,

@@ -26,7 +26,12 @@
       "Skill(clean-post-plan)",
       "Skill(review-code)",
       "Skill(run-tests)",
-      "Skill(verify-ui)"
+      "Skill(verify-ui)",
+      "Skill(lint)",
+      "Skill(format)",
+      "Skill(sync)",
+      "Skill(grill-me)",
+      "Skill(drift-check)"
     ]
   },
   "hooks": {

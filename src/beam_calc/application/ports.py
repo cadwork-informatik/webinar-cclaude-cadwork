@@ -1,4 +1,5 @@
 """Ports — protocols defining outbound dependencies of the application layer."""
+
 from __future__ import annotations
 
 from typing import Protocol

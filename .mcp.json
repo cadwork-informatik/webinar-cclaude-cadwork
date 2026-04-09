@@ -1,8 +1,15 @@
 {
   "mcpServers": {
     "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"]
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "@playwright/mcp@latest",
+        "--isolated",
+        "--output-dir", "temp/screenshots"
+      ]
     },
     "context7": {
       "command": "npx",

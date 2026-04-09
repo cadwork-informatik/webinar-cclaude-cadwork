@@ -1,4 +1,5 @@
 """FastAPI application factory with dependency wiring."""
+
 from __future__ import annotations
 
 from fastapi import FastAPI

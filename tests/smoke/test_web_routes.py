@@ -1,4 +1,5 @@
 """Smoke tests — FastAPI TestClient round-trip."""
+
 from __future__ import annotations
 
 import pytest
@@ -25,6 +26,7 @@ def test_post_default_inputs_returns_results(client: TestClient) -> None:
     r = client.post(
         "/",
         data={
+            "name": "My beam",
             "span_m": 5.0,
             "width_mm": 120,
             "height_mm": 240,

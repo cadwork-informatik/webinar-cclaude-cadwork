@@ -1,4 +1,5 @@
 """BeamDesignService — application-layer orchestration of EC5 checks."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -18,6 +19,7 @@ from beam_calc.domain.timber import LoadDuration, ServiceClass
 
 @dataclass(frozen=True)
 class DesignRequest:
+    name: str
     span_m: float
     width_mm: float
     height_mm: float
@@ -47,6 +49,7 @@ class BeamDesignService:
     def design(self, req: DesignRequest) -> DesignReport:
         timber = self._timber_repo.get(req.timber_class)
         beam = Beam(
+            name=req.name,
             span_m=req.span_m,
             section=RectangularSection(width_mm=req.width_mm, height_mm=req.height_mm),
             timber=timber,

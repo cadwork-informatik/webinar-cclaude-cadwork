@@ -1,4 +1,5 @@
 """In-memory EN 338 timber property repository."""
+
 from __future__ import annotations
 
 from beam_calc.domain.timber import TimberProperties

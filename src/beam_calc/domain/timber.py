@@ -1,4 +1,5 @@
 """Timber domain enums and value objects (EN 338 / EN 1995-1-1)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

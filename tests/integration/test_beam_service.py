@@ -1,4 +1,5 @@
 """Integration tests — BeamDesignService wired to real in-memory repo, no network."""
+
 from __future__ import annotations
 
 import pytest
@@ -14,6 +15,7 @@ def test_service_designs_default_beam() -> None:
     service = BeamDesignService(timber_repo=InMemoryTimberRepository())
     report = service.design(
         DesignRequest(
+            name="Test beam",
             span_m=5.0,
             width_mm=120,
             height_mm=240,

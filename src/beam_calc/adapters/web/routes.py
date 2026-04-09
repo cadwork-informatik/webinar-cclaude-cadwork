@@ -1,4 +1,5 @@
 """HTTP routes for the beam designer."""
+
 from __future__ import annotations
 
 import json
@@ -42,6 +43,7 @@ def build_router(service: BeamDesignService) -> APIRouter:
     @router.post("/", response_class=HTMLResponse)
     def submit(
         request: Request,
+        name: str = Form(""),
         span_m: float = Form(5.0),
         width_mm: float = Form(120),
         height_mm: float = Form(240),
@@ -52,6 +54,7 @@ def build_router(service: BeamDesignService) -> APIRouter:
         duration: LoadDuration = Form(LoadDuration.MEDIUM),
     ) -> HTMLResponse:
         dto = DesignFormDto(
+            name=name,
             span_m=span_m,
             width_mm=width_mm,
             height_mm=height_mm,

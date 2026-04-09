@@ -1,0 +1,52 @@
+- generic [active] [ref=e1]:
+  - heading "EC5 Timber Beam Designer" [level=1] [ref=e2]
+  - paragraph [ref=e3]: Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - text: Beam name
+      - textbox "Beam name" [ref=e6]:
+        - /placeholder: e.g. Floor joist B3
+    - generic [ref=e7]:
+      - text: Species
+      - combobox "Species" [ref=e8]
+    - generic [ref=e9]:
+      - text: Span L [m]
+      - spinbutton "Span L [m]" [ref=e10]: "5.0"
+    - generic [ref=e11]:
+      - text: Width b [mm]
+      - spinbutton "Width b [mm]" [ref=e12]: "120"
+    - generic [ref=e13]:
+      - text: Height h [mm]
+      - spinbutton "Height h [mm]" [ref=e14]: "240"
+    - generic [ref=e15]:
+      - text: Timber class
+      - combobox "Timber class" [ref=e16]:
+        - option "C14" [selected]
+        - option "C16"
+        - option "C18"
+        - option "C20"
+        - option "C22"
+        - option "C24"
+        - option "C27"
+        - option "C30"
+    - generic [ref=e17]:
+      - text: g_k [kN/m]
+      - spinbutton "g_k [kN/m]" [ref=e18]: "2.0"
+    - generic [ref=e19]:
+      - text: q_k [kN/m]
+      - spinbutton "q_k [kN/m]" [ref=e20]: "3.0"
+    - generic [ref=e21]:
+      - text: Service class
+      - combobox "Service class" [ref=e22]:
+        - option "1" [selected]
+        - option "2"
+        - option "3"
+    - generic [ref=e23]:
+      - text: Load duration
+      - combobox "Load duration" [ref=e24]:
+        - option "permanent"
+        - option "long"
+        - option "medium" [selected]
+        - option "short"
+        - option "instantaneous"
+    - button "Compute" [ref=e25] [cursor=pointer]

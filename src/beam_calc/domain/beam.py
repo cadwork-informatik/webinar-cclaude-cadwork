@@ -1,4 +1,5 @@
 """Beam entity and load value objects."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -32,6 +33,7 @@ class UniformLoads:
 class Beam:
     """Simply-supported timber beam with uniform load."""
 
+    name: str
     span_m: float
     section: RectangularSection
     timber: TimberProperties
