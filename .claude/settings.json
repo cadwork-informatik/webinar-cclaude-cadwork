@@ -29,10 +29,6 @@
       "Skill(verify-ui)"
     ]
   },
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "playwright"
-  ],
   "hooks": {
     "PostToolUse": [
       {

@@ -1,0 +1,169 @@
+- generic [active] [ref=e1]:
+  - heading "EC5 Timber Beam Designer" [level=1] [ref=e2]
+  - paragraph [ref=e3]: Simply-supported rectangular beam under uniform load. ULS bending + SLS deflection per EN 1995-1-1.
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - text: Span L [m]
+      - spinbutton "Span L [m]" [ref=e6]: "5.0"
+    - generic [ref=e7]:
+      - text: Width b [mm]
+      - spinbutton "Width b [mm]" [ref=e8]: "120.0"
+    - generic [ref=e9]:
+      - text: Height h [mm]
+      - spinbutton "Height h [mm]" [ref=e10]: "240.0"
+    - generic [ref=e11]:
+      - text: Timber class
+      - combobox "Timber class" [ref=e12]:
+        - option "C14"
+        - option "C16"
+        - option "C18"
+        - option "C20"
+        - option "C22"
+        - option "C24" [selected]
+        - option "C27"
+        - option "C30"
+    - generic [ref=e13]:
+      - text: g_k [kN/m]
+      - spinbutton "g_k [kN/m]" [ref=e14]: "2.0"
+    - generic [ref=e15]:
+      - text: q_k [kN/m]
+      - spinbutton "q_k [kN/m]" [ref=e16]: "3.0"
+    - generic [ref=e17]:
+      - text: Service class
+      - combobox "Service class" [ref=e18]:
+        - option "1" [selected]
+        - option "2"
+        - option "3"
+    - generic [ref=e19]:
+      - text: Load duration
+      - combobox "Load duration" [ref=e20]:
+        - option "permanent"
+        - option "long"
+        - option "medium" [selected]
+        - option "short"
+        - option "instantaneous"
+    - button "Compute" [ref=e21] [cursor=pointer]
+  - generic [ref=e22]:
+    - heading "ULS — Bending FAIL" [level=2] [ref=e23]
+    - table [ref=e24]:
+      - rowgroup [ref=e25]:
+        - row "q_d 7.200 kN/m" [ref=e26]:
+          - rowheader "q_d" [ref=e27]
+          - cell "7.200 kN/m" [ref=e28]
+        - row "M_d 22.500 kNm" [ref=e29]:
+          - rowheader "M_d" [ref=e30]
+          - cell "22.500 kNm" [ref=e31]
+        - row "V_d 18.000 kN" [ref=e32]:
+          - rowheader "V_d" [ref=e33]
+          - cell "18.000 kN" [ref=e34]
+        - row "σ_m,d 19.53 N/mm²" [ref=e35]:
+          - rowheader "σ_m,d" [ref=e36]
+          - cell "19.53 N/mm²" [ref=e37]
+        - row "f_m,d 14.77 N/mm²" [ref=e38]:
+          - rowheader "f_m,d" [ref=e39]
+          - cell "14.77 N/mm²" [ref=e40]
+        - row "ratio 1.322" [ref=e41]:
+          - rowheader "ratio" [ref=e42]
+          - cell "1.322" [ref=e43]
+  - generic [ref=e44]:
+    - heading "SLS — Deflection FAIL" [level=2] [ref=e45]
+    - table [ref=e46]:
+      - rowgroup [ref=e47]:
+        - row "w_inst 26.76 mm (lim 16.67 mm)" [ref=e48]:
+          - rowheader "w_inst" [ref=e49]
+          - cell "26.76 mm (lim 16.67 mm)" [ref=e50]
+        - row "w_fin 42.81 mm (lim 20.00 mm)" [ref=e51]:
+          - rowheader "w_fin" [ref=e52]
+          - cell "42.81 mm (lim 20.00 mm)" [ref=e53]
+  - generic [ref=e54]:
+    - heading "Diagrams" [level=2] [ref=e55]
+    - generic [ref=e58]:
+      - img:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: "0"
+              - generic:
+                - generic: "1"
+              - generic:
+                - generic: "2"
+              - generic:
+                - generic: "3"
+              - generic:
+                - generic: "4"
+              - generic:
+                - generic: "5"
+            - generic:
+              - generic:
+                - generic: "0"
+              - generic:
+                - generic: "5"
+              - generic:
+                - generic: "10"
+              - generic:
+                - generic: "15"
+              - generic:
+                - generic: "20"
+            - generic:
+              - generic:
+                - generic:
+                  - generic: −20
+                - generic:
+                  - generic: −15
+                - generic:
+                  - generic: −10
+                - generic:
+                  - generic: −5
+                - generic:
+                  - generic: "0"
+                - generic:
+                  - generic: "5"
+                - generic:
+                  - generic: "10"
+                - generic:
+                  - generic: "15"
+                - generic:
+                  - generic: "20"
+              - generic:
+                - generic:
+                  - generic: "0"
+                - generic:
+                  - generic: "5"
+                - generic:
+                  - generic: "10"
+                - generic:
+                  - generic: "15"
+                - generic:
+                  - generic: "20"
+                - generic:
+                  - generic: "25"
+      - img:
+        - generic:
+          - generic [ref=e83]:
+            - generic [ref=e85]: M(x) [kNm]
+            - generic [ref=e88]: V(x) [kN]
+            - generic [ref=e91]: w(x) [mm]
+          - generic:
+            - generic: x [m]
+          - generic:
+            - generic: M [kNm]
+          - generic:
+            - generic: V [kN]
+          - generic:
+            - generic: w [mm]
+      - generic [ref=e93]:
+        - img [ref=e96] [cursor=pointer]
+        - generic [ref=e98]:
+          - img [ref=e100] [cursor=pointer]
+          - img [ref=e103] [cursor=pointer]
+        - generic [ref=e105]:
+          - img [ref=e107] [cursor=pointer]
+          - img [ref=e110] [cursor=pointer]
+          - img [ref=e113] [cursor=pointer]
+          - img [ref=e116] [cursor=pointer]
+        - link "plotly-logomark" [ref=e119] [cursor=pointer]:
+          - /url: https://plotly.com/
+          - img "plotly-logomark" [ref=e120]
+      - img
+  - img [ref=e133]
